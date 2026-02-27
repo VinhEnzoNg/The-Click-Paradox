@@ -227,11 +227,36 @@ const premiumCta = document.getElementById('premiumCta');
 const essayBody = document.querySelector('.essay-body');
 
 premiumBtn.addEventListener('click', () => {
-    // Instantly apply premium mode — zero friction, zero popup
+    // ── 1. Find the topmost visible paragraph to use as scroll anchor ──
+    const paragraphs = document.querySelectorAll('.essay-body p, .pull-quote blockquote');
+    let anchor = null;
+    let anchorTop = 0;
+
+    for (const el of paragraphs) {
+        const rect = el.getBoundingClientRect();
+        // pick the first element whose top is on-screen (or just above fold)
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            anchor = el;
+            anchorTop = rect.top;   // distance from viewport top BEFORE reflow
+            break;
+        }
+    }
+
+    // ── 2. Apply premium mode (triggers reflow / layout shift) ──
     essayBody.classList.add('premium-mode');
 
-    // Replace the CTA with a subtle confirmation tag
-    premiumCta.innerHTML = '<span class="premium-activated-tag">✦ Premium Activated</span>';
+    // ── 3. On next frame, measure how much the anchor moved and compensate ──
+    requestAnimationFrame(() => {
+        if (anchor) {
+            const newTop = anchor.getBoundingClientRect().top;
+            const delta = newTop - anchorTop;   // positive = content grew upward
+            window.scrollBy({ top: delta, behavior: 'instant' });
+        }
+
+        // Replace button only after scroll correction so DOM mutation
+        // doesn't interfere with the BoundingClientRect reads above
+        premiumCta.innerHTML = '<span class="premium-activated-tag">✦ Premium Activated</span>';
+    });
 });
 
 
