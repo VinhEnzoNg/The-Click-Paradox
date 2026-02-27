@@ -1150,6 +1150,118 @@ body.cursor-click .cursor-dot {
 }
 
 /* =============================================
+   PREMIUM EASTER EGG — 1-Click Reading Upgrade
+   ============================================= */
+
+.premium-cta {
+  margin: 36px 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.premium-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: linear-gradient(135deg, #C9A84C, #E8C96A, #C9A84C);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  cursor: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+  animation: goldShimmer 3s ease infinite;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.premium-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(201, 168, 76, 0.45);
+}
+
+.premium-btn-icon {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.premium-hint {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+  font-style: italic;
+  margin: 0 !important;
+}
+
+/* State: button replaced by a confirmation tag */
+.premium-activated-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 100px;
+  padding: 6px 16px;
+  animation: fadeInUp 0.35s ease;
+}
+
+/* ── PREMIUM MODE — applied to <article class="essay-body"> ── */
+
+.essay-body.premium-mode {
+  font-family: 'Playfair Display', Georgia, serif;
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 36px;
+  margin-left: -39px;
+  /* keep text aligned to original left edge */
+  max-width: 760px;
+  /* slightly wider breathing room */
+  transition: border-color 0.4s ease, padding-left 0.4s ease, max-width 0.4s ease;
+}
+
+.essay-body.premium-mode p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 19px;
+  line-height: 2;
+  letter-spacing: 0.01em;
+}
+
+.essay-body.premium-mode strong {
+  font-weight: 700;
+}
+
+[data-theme="dark"] .essay-body.premium-mode {
+  border-left-color: var(--accent-gold);
+}
+
+/* =============================================
    RESPONSIVE
    ============================================= */
 
@@ -1157,6 +1269,7 @@ body.cursor-click .cursor-dot {
   body {
     font-size: 16px;
   }
+
 
   .content-wrapper {
     padding: 0 24px 80px;

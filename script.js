@@ -219,6 +219,23 @@ document.getElementById('m5Close').addEventListener('click', closeAll);
 
 
 // =============================================
+// EASTER EGG — 1-Click Premium Reading Upgrade
+// =============================================
+
+const premiumBtn = document.getElementById('premiumBtn');
+const premiumCta = document.getElementById('premiumCta');
+const essayBody = document.querySelector('.essay-body');
+
+premiumBtn.addEventListener('click', () => {
+    // Instantly apply premium mode — zero friction, zero popup
+    essayBody.classList.add('premium-mode');
+
+    // Replace the CTA with a subtle confirmation tag
+    premiumCta.innerHTML = '<span class="premium-activated-tag">✦ Premium Activated</span>';
+});
+
+
+// =============================================
 // SCROLL REVEAL
 // =============================================
 
