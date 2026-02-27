@@ -1261,6 +1261,10 @@ body.cursor-click .cursor-dot {
   border-left-color: var(--accent-gold);
 }
 
+[data-theme="dark"] .premium-btn {
+  color: #0F0F1A;
+}
+
 /* =============================================
    RESPONSIVE
    ============================================= */
